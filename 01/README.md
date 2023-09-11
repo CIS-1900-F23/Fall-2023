@@ -24,7 +24,7 @@ Of course, since the standard is set by the entire committee, other contributors
 
 ## Logistics
 
-See the course webpage for full details.
+See the course canvas for full details.
 This will be an active learning class.
 For future classes, you will be required to read the course notes ahead of time to get familiar with the material.
 Before class, you will complete a small quiz to check your understanding.
