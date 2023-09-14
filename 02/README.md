@@ -195,3 +195,16 @@ References can also be used in conjunction with the for-each loop introduced ear
 for (auto & i : {1, 2, 3, 4})
     i = 0;
 ```
+
+Reference can also be used to create aliases. However, they can not be reseated.
+
+```cpp
+int x = 0;
+int &y = x;
+y = 1;
+std::cout << x;
+```
+
+This will create an alias for `x` called `y`. Changing y will also change `x`. However, it would be is not possible to change y yo reference a difference variable. Doing something like `y = z`, will just set the value of `y` (and `x`) to `z`instead of reseating y to reference `z`.
+
+
