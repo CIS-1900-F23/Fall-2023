@@ -189,3 +189,64 @@ You cannot instantiate objects of abstract classes, since there is conceptually 
 If a derived class overrides the pure virtual function, then it is not pure virtual anymore in that derived class.
 A class without any pure virtual functions is *concrete*, and objects of that class can be instantiated.
 Abstract classes allow us to define an *interface* with operations that are forced to be implemented by derived classes if they want to use the class.
+
+### Classes with Resources
+
+If all of a class's members are regular variables, then things are easy.
+Passing objects of that class around works fine, and copying the object just copies each of its members.
+
+But when a class holds a *resource* that must be manually managed, like dynamically allocated memory, things get more complex.
+For example, using objects of the following class would result in a memory leak, since the memory allocated using `new` is never deallocated with `delete`.
+
+https://github.com/CIS-1900-F23/Fall-2023/blob/4b1add80a047a959417dc75de98ec4734bf8b3c2/04/eg0.cpp#L1-L32
+
+Other examples of resources include things like file handles, locks, or remote web connections.
+These examples all need to be "cleaned up" once used, which also makes *copying*, a core concept in C++, more complex.
+In these notes, we will go over five special functions that handle these sort of operations on objects.
+
+## Destructors
+
+To handle cleanup, C++ has destructors, which are like the inverse of a constructor.
+These are defined like a constructor, but with a `~` in front and has no arguments.
+While constructors were present in other languages before C++, destructors were a novel feature introduced by C++.
+
+https://github.com/CIS-1900-F23/Fall-2023/blob/4b1add80a047a959417dc75de98ec4734bf8b3c2/04/eg1.cpp#L1-L38
+
+The destructor will be called automatically when the object is cleaned up, either when it goes out of scope for a regular variable or when `delete` is called on it for objects dynamically allocated using `new`.
+You should never have to manually call the destructor.
+
+If there is the *slightest* possibility of subclasses for your class, your destructor should be `virtual`.
+If it is not, then if you dynamically allocated an object of a subclass, and then call `delete` on a base class pointer to that object, then anything extra in the subclass destructor will not be called, leading to the object not being properly cleaned up.
+
+### Order of Construction and Destruction
+
+In C++, variables and objects are always destroyed in reverse order of being created.
+This is the case for both regular variables declared in a function and member variables as part of an object.
+This is because ordering often implies dependency, and deallocating objects that depend on each other can go badly if ordered wrong.
+For example, consider the following declarations:
+```c++
+A a;
+B b {a};
+```
+`b` seems to somehow *depend* on `a`, and might internally keep a reference to `a`.
+If `a` were destroyed before `b`, things can go wrong when the time comes to destroy `b`, since its reference to `a` is no longer valid.
+But C++ will always destroy `b` before `a`, since `b` was declared after `a`.
+While this is not foolproof and programmers can always find ways of causing more issues, this solves many simple use cases.
+
+With a class, the destructor also destroys the object's member variables in reverse order, but what in reverse order of what?
+We know that member variables are initialized in the constructor.
+Constructors first initialize their base class, either using one of the base class's constructors if it was in the initializer list (e.g. `derived() : base{...} {...}`), or the default constructor for the base class otherwise.
+Next it initializes class members in *declaration* order, using the initializer list if the member is found in it.
+Finally, the constructor body is called.
+
+Note that the order of member variables in the initializer list *doesn't matter*.
+This is because there can be multiple constructors with multiple orderings, but only one destructor, so it always picks the consistent order: the order of declarations.
+
+If you try to initialize members out of order like in the following code, then you will get a compiler warning, and things will probably not work as you expect (try running the code!):
+
+https://github.com/CIS-1900-F23/Fall-2023/blob/4b1add80a047a959417dc75de98ec4734bf8b3c2/04/order.cpp#L1-L20
+
+Now back to the destructor.
+It should run in the opposite order as construction, so it first runs the destructor body, then destroys the members variables in reverse order of declaration, and finally calling the destructors of base classes.
+Note that if you have member variables which are objects, the destructor destroys them and cleans them up, meaning their destructors are called automatically.
+Again, you never have to call destructors manually.
