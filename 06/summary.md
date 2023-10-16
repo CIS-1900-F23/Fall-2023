@@ -1,5 +1,19 @@
 # Class 6 summary
 
+### 2023 Summary
+
+I added graph.cpp, and polymorphic.cpp to show examples of weak ptr and using smart pointers with polymorphic classes.
+
+I shared some resouces that I found helpful while researching some of the topics here:
+
+- Stack Overflow discussion on exceptin safety: https://stackoverflow.com/a/1853769/13377330
+- CppCon talk on exceptions: https://www.youtube.com/watch?v=0ojB8c0xUd8&ab_channel=CppCon
+- Stack Overflow discussion on copy/swap idiom: https://stackoverflow.com/questions/3279543/what-is-the-copy-and-swap-idiom
+- Stack Overflow Quick summary on performance of smart pointers: https://stackoverflow.com/a/22296124/13377330
+- Scott Meyers Book Chapter 4 on smart pointers
+
+
+### 2022 Summary
 I covered fewer questions in class than normal, to make more time for working on exercises and the assignment.
 
 I went over the Canvas quiz, since most of the answers were wrong.
