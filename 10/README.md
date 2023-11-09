@@ -26,7 +26,7 @@ The parameter list and return type of `operator()` can be fully customized, and 
 Since a function object is still a normal object, you could give the class some member variables in order to change its behavior:
 
 
-https://github.com/CIS1900/2022-fall/blob/f4e525a9d150bcf9eb98be13aaf7aaa99f0e6255/11/functor1.cpp#L1-L25
+https://github.com/CIS-1900-F23/Fall-2023/blob/214c85d4339503e830606f2374af7f9289fe602c/10/functor1.cpp#L1-L25
 
   
 
@@ -35,7 +35,7 @@ The class of a function object can also be made into a class template, to accomo
 Then, a function template that expects a function argument can use a template argument to specify the type of the function, as shown in this example:
   
 
-https://github.com/CIS1900/2022-fall/blob/f4e525a9d150bcf9eb98be13aaf7aaa99f0e6255/11/functor2.cpp#L1-L40
+https://github.com/CIS-1900-F23/Fall-2023/blob/214c85d4339503e830606f2374af7f9289fe602c/10/functor2.cpp#L1-L40
   
 
 This code uses the `predicate<T>` concept, which constrains the type to be something that can be called with a `T` and returns something that can be converted to a `bool`.
@@ -65,7 +65,7 @@ An even more useful feature for shortening your function object code is the *lam
 A lambda expression is basically shorthand for declaring a function object (not the class of that function object!):
 
 
-https://github.com/CIS1900/2022-fall/blob/f4e525a9d150bcf9eb98be13aaf7aaa99f0e6255/11/lambda.cpp#L1-L19
+https://github.com/CIS-1900-F23/Fall-2023/blob/214c85d4339503e830606f2374af7f9289fe602c/10/lambda.cpp#L1-L19
   
 
 The syntax is fairly straightforward, allowing you to write the parameter list and body of the function as usual.
@@ -97,7 +97,7 @@ Finally, `[=]` and `[&]` capture *everything* by value and reference respectivel
 
   
 
-https://github.com/CIS1900/2022-fall/blob/f4e525a9d150bcf9eb98be13aaf7aaa99f0e6255/11/capture.cpp#L1-L24
+https://github.com/CIS-1900-F23/Fall-2023/blob/214c85d4339503e830606f2374af7f9289fe602c/10/capture.cpp#L1-L24
 
   
 
@@ -107,7 +107,7 @@ This is basically shorthand for declaring a template class for a function object
 
   
 
-https://github.com/CIS1900/2022-fall/blob/f4e525a9d150bcf9eb98be13aaf7aaa99f0e6255/11/generic_lambda.cpp#L1-L14
+https://github.com/CIS-1900-F23/Fall-2023/blob/214c85d4339503e830606f2374af7f9289fe602c/10/generic_lambda.cpp#L1-L14
 
   
 
@@ -132,7 +132,7 @@ More sophisticated functional programming is also possible.
 
 `bind` in `<functional>` partially applies a function, a useful operation for functional programming:
   
-https://github.com/CIS1900/2022-fall/blob/f4e525a9d150bcf9eb98be13aaf7aaa99f0e6255/11/bind.cpp#L1-L18
+https://github.com/CIS-1900-F23/Fall-2023/blob/4e908cb2be74b7632f3555d247aabb59c75a41ec/10/bind.cpp#L21-L31
 
 To specify that an argument should be left unbound, use `placeholders::_1`, `placeholders::_2`, etc . (in order).
 
@@ -140,7 +140,7 @@ In this example, we use `bind` to set the  last two arguments of `f` to `40` and
 
 We can also bind to lambdas, member functions and data members and nest bindings as you can see through the rest of the examples.
 
-https://github.com/CIS1900/2022-fall/blob/f4e525a9d150bcf9eb98be13aaf7aaa99f0e6255/11/bind.cpp 
+https://github.com/CIS-1900-F23/Fall-2023/blob/4e908cb2be74b7632f3555d247aabb59c75a41ec/10/bind.cpp#L33-L44
 
 ###  Function Types
 
@@ -155,7 +155,7 @@ An alternative is `std::function<T>`, which is a class that can hold any callabl
 This is useful for writing recursive lambdas, since `auto` needs to know the type of what it's capturing, but that type depends on itself:
 
   
-https://github.com/CIS1900/2022-fall/blob/f4e525a9d150bcf9eb98be13aaf7aaa99f0e6255/11/recursion.cpp#L1-L17
+https://github.com/CIS-1900-F23/Fall-2023/blob/214c85d4339503e830606f2374af7f9289fe602c/10/recursion.cpp#L1-L17
 
   
 In this example, we need to capture by reference since capturing by value gets an uninitialized `function`.
@@ -168,7 +168,7 @@ There are also other methods to create recursive lambdas, but this is the most s
 `function` is also useful for storing a heterogeneous collction of functions with the same function signature, but not necessarily the same type:
 
   
-https://github.com/CIS1900/2022-fall/blob/f4e525a9d150bcf9eb98be13aaf7aaa99f0e6255/11/functions.cpp#L1-L29
+https://github.com/CIS-1900-F23/Fall-2023/blob/214c85d4339503e830606f2374af7f9289fe602c/10/functions.cpp#L1-L29
 
   
 
@@ -209,7 +209,7 @@ All standard library containers provide the `.size()` and `.empty()` member func
 `vector` also allows users to access elements using `[...]` as with an array.
 It further provides `.push_back(i)` to add a new element `i` to the back of the `vector` (by copy/move, just as with other function arguments), increasing the size of the `vector` by one.
 
-https://github.com/CIS1900/2022-fall/blob/900cc0884992eacce339efeef7eabbb81cd12a8d/09/vector.cpp#L1-L18
+https://github.com/CIS-1900-F23/Fall-2023/blob/214c85d4339503e830606f2374af7f9289fe602c/10/vector.cpp#L1-L18
 
 As seen in this example, just as with normal arrays, `vector`s (and all other standard library containers) support the range-based for loop.
 
@@ -226,7 +226,7 @@ For more details, see [this SO question](https://stackoverflow.com/questions/286
 To slightly improve performance, there is an alternative to `push_back` to adding new elements to a `vector` called `emplace_back`.
 `emplace_back` takes the arguments of an object constructor and initializes the object *in* the `vector`, avoiding the copy or move necessary when creating the object then using `.push_back`:
 
-https://github.com/CIS1900/2022-fall/blob/900cc0884992eacce339efeef7eabbb81cd12a8d/09/emplace.cpp#L1-L25
+https://github.com/CIS-1900-F23/Fall-2023/blob/214c85d4339503e830606f2374af7f9289fe602c/10/emplace.cpp#L1-L25
 
 This example also shows what happens when the internal array needs to be resized.
 
@@ -235,7 +235,7 @@ Using `[i]` to access elements of the `vector` directly accesses the underlying 
 There is, of course, some overhead to doing this.
 Tests show that it is around 10%, but this will differ on different machines and architectures.
 
-https://github.com/CIS1900/2022-fall/blob/900cc0884992eacce339efeef7eabbb81cd12a8d/09/range.cpp#L1-L24
+https://github.com/CIS-1900-F23/Fall-2023/blob/214c85d4339503e830606f2374af7f9289fe602c/10/range.cpp#L1-L24
 
 On my machine, the undefined behavior from the out of bounds access using `v[10]` runs without issue, which is very scary.
 This can easily lead to bugs occuring later on, if the programmer never notices this and the undefined behavior starts behaving differently on a different machine or on a different run.
@@ -254,7 +254,7 @@ Benefits to using `array` are that it stores its size (using `.size()`, like oth
 There is *no* runtime overhead at all to using `array` over C arrays, since the `array` operations can be translated to operations over a C array at compile time.
 If you are using plain C fixed-length arrays on the stack, then you should be using `array` instead!
 
-https://github.com/CIS1900/2022-fall/blob/900cc0884992eacce339efeef7eabbb81cd12a8d/09/array.cpp#L1-L34
+https://github.com/CIS-1900-F23/Fall-2023/blob/214c85d4339503e830606f2374af7f9289fe602c/10/array.cpp#L1-L34
 
 This code is also an example of template argument deduction, where some type arguments (in `<>`) can be omitted if the compiler can deduce them.
 Here, the number of elements and their type can be deduced.
@@ -264,7 +264,7 @@ Here, the number of elements and their type can be deduced.
 `list` (in the `<list>` header) provides a doubly-linked list.
 In addition to the common operations that other containers provide, `list`s also allow you to push or emplace to the front:
 
-https://github.com/CIS1900/2022-fall/blob/900cc0884992eacce339efeef7eabbb81cd12a8d/09/list.cpp#L1-L16
+https://github.com/CIS-1900-F23/Fall-2023/blob/214c85d4339503e830606f2374af7f9289fe602c/10/list.cpp#L1-L16
 
 As usual with a linked list, direct access to elements via `[...]` is not available.
 
@@ -315,7 +315,7 @@ A `map` (in the `<map>` header) is an associative container that is typically im
 `[]` returns a reference to the value corresponding to a key if the key exists in the map.
 If it doesn't yet exist, it will be added with a corresponding default-initialized value.
 
-https://github.com/CIS1900/2022-fall/blob/900cc0884992eacce339efeef7eabbb81cd12a8d/09/map1.cpp#L1-L21
+https://github.com/CIS-1900-F23/Fall-2023/blob/214c85d4339503e830606f2374af7f9289fe602c/10/map1.cpp#L1-L21
 
 Other familiar member functions are also available, like a checked access using `.at(i)`, `.size()`, `.empty()`, and `.erase()`.
 `.insert(...)` and `.emplace(...)` are also available, though they do not take an iterator to the location to insert at, since `map`s maintain their own order.
@@ -326,7 +326,7 @@ To use a custom class for the key type, this class should be comparable using `o
 If neither element is less than the other (i.e. `!(a < b) && !(b < a)`) then the `map` will consider `a` and `b` equivalent.
 In the following example a wrong implementation of `operator<` results in two objects not being considered equal when they are in fact equal:
 
-https://github.com/CIS1900/2022-fall/blob/900cc0884992eacce339efeef7eabbb81cd12a8d/09/map2.cpp#L1-L45
+https://github.com/CIS-1900-F23/Fall-2023/blob/214c85d4339503e830606f2374af7f9289fe602c/10/map2.cpp#L1-L45
 
 Other ordering operations (like `>` instead of `<`) can also be specified for a `map`, which we'll see when we talk about function objects in a few classes.
 
@@ -346,7 +346,7 @@ Unlike other languages where the hashing function is a member function, C++ does
 This approach requires virtual calls for common functionality like calling the hash function, which is additional performance overhead.
 As with custom comparison operations, we'll cover custom hash functions when we talk about function objects in a few classes.
 
-https://github.com/CIS1900/2022-fall/blob/900cc0884992eacce339efeef7eabbb81cd12a8d/09/unordered_map.cpp#L1-L21
+https://github.com/CIS-1900-F23/Fall-2023/blob/214c85d4339503e830606f2374af7f9289fe602c/10/unordered_map.cpp#L1-L21
 
 Like its name suggests, `unordered_map` is not ordered, so iterating through one using iterators does not always go in sorted order.
 Prefer `unordered_map` to `map` for the improved performance, unless the sorted order iteration is useful for your use case or writing a good hash function for your key type is too difficult.
