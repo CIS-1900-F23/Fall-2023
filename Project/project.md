@@ -40,7 +40,7 @@ Provide an estimate for the time you expect to spend on different parts of the p
 
 Make a Github repo for your project (it can be either public or private), and add the course staff.
 
-Our Github usernames are `mabaker`, `matt-dong`, and `joezbub`.
+Our Github usernames are `alnasir7`, `matt-dong`, and `joezbub`.
 Include the proposal in the Github repo, so we can make comments in a pull request.
 We can also make a repo for you if you want it to be under the `CIS1900` account.
 
