@@ -80,7 +80,7 @@ https://github.com/CIS-1900-F23/Fall-2023/blob/ae41bd0296adbd4437b11b4e3405e7004
 One final thing to note is that `future`s returned by `async` will block in their destructor until the task is finished and the return value is ready.
 This means that if you don't store hte returned `future` in a variable, then it will be immediately destroyed and block, essentially making the `async` call synchronous rather than asynchronous:
 
-https://github.com/CIS-1900-F23/Fall-2023/blob/ae41bd0296adbd4437b11b4e3405e70048cba720/12/async_sync.cppp#L1-L20
+https://github.com/CIS-1900-F23/Fall-2023/blob/ae41bd0296adbd4437b11b4e3405e70048cba720/12/async_sync.cpp#L1-L20
 
 This is specific for `future`s obtained from `async`, and not for the general `future`s in the next section.
 
