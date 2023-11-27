@@ -1,4 +1,4 @@
-# Class 8
+# Class 12
 
 In this week's notes we'll go over the concurrency features of the C++ standard library.
 Not everyone has seen concurrency before, and this will likely be difficult if it's your first time seeing it.
