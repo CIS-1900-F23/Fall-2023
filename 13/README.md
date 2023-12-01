@@ -177,7 +177,7 @@ Now, our next example is a little bit more different. Consider the following cla
 
 A common pattern is to define a sub struct for each class containing hot and cold data respectively like this.
 
-https://github.com/CIS-1900-F23/Fall-2023/blob/0e20d56d7ba2ffd856709c29e3c9e0862ba5c3fb/13/hodata.cpp#l4-l23
+https://github.com/CIS-1900-F23/Fall-2023/blob/0e20d56d7ba2ffd856709c29e3c9e0862ba5c3fb/13/hodata.cpp#L4-L23
 
 If you are doing extensive file processing, you might be attempting to access for example the path to the file and the id of the file very often. You might be interested in saving some other metadata, but this will not be referenced often. Therefore, you want to make sure when you access a file struct, you get the important first without needing to access a second cache line. Therefore, placing the important data first will ensure that. To make it easy to modify, using a struct to define hot and cold data is helpful.
 
@@ -263,7 +263,7 @@ With all of these compiler hint techniques, always measure the performance gains
 
 This overlaps with understanding C++ to a large extent, but sometimes, API Design can help improve performance. Consider the scenario where we want to have a function that takes in some data, processes it, and returns a string. You may define it like this.
 
-https://github.com/CIS-1900-F23/Fall-2023/blob/0e20d56d7ba2ffd856709c29e3c9e0862ba5c3fb/13/string.cpp#L5-20
+https://github.com/CIS-1900-F23/Fall-2023/blob/0e20d56d7ba2ffd856709c29e3c9e0862ba5c3fb/13/string.cpp#L5-L20
 
 If we expect this code to be executed in a loop, a better API design is to let the user pass in a reference to a string and we fill it for them. The advantage of this is now the user can allocate the buffer string outside of their loop and pass in the same reference, while in contrast, the previous design will force us to allocate new memory for the string on each iteration.
 
@@ -318,11 +318,11 @@ Magic is a profiling tool with a great visualization that was developed by Jane 
 
 Finally, I will link to some great talks and resources about performance to learn more (some of the topics here are inspired by these):
 
-[Optimizing Software in C++](https://www.agner.org/optimize/optimizing_cpp.pdf)
-Effective Modern C++ by Scott Meyers
-[Carl Cook: When a Microsecond Is an Eternity](https://www.youtube.com/watch?v=NH1Tta7purM&ab_channel=CppCon)
-[Timur Doumler: Want fast C++? Know your hardware!](https://www.youtube.com/watch?v=BP6NxVxDQIs&ab_channel=CppCon)
-[The Most Important Optimizations to Apply in Your C++ Programs - Jan Bielak](https://www.youtube.com/watch?v=qCjEN5XRzHc&ab_channel=CppCon)
-[Chandler Carruth: Going Nowhere Faster](https://www.youtube.com/watch?v=2EWejmkKlxs&ab_channel=CppCon)
-[Chandler Carruth : Efficiency with Algorithms, Performance with Data Structure](https://www.youtube.com/watch?v=fHNmRkzxHWs&ab_channel=CppCon)
+- [Optimizing Software in C++](https://www.agner.org/optimize/optimizing_cpp.pdf)
+- Effective Modern C++ by Scott Meyers
+- [Carl Cook: When a Microsecond Is an Eternity](https://www.youtube.com/watch?v=NH1Tta7purM&ab_channel=CppCon)
+- [Timur Doumler: Want fast C++? Know your hardware!](https://www.youtube.com/watch?v=BP6NxVxDQIs&ab_channel=CppCon)
+- [The Most Important Optimizations to Apply in Your C++ Programs - Jan Bielak](https://www.youtube.com/watch?v=qCjEN5XRzHc&ab_channel=CppCon)
+- [Chandler Carruth: Going Nowhere Faster](https://www.youtube.com/watch?v=2EWejmkKlxs&ab_channel=CppCon)
+- [Chandler Carruth : Efficiency with Algorithms, Performance with Data Structure](https://www.youtube.com/watch?v=fHNmRkzxHWs&ab_channel=CppCon)
 
