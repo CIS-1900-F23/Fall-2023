@@ -191,19 +191,19 @@ Another very important concept is struct of arrays vs array of structs. Imagine 
 
 Now, if cache lines are 4 bytes for example, each byte you are interested in accessing will be in a different cache line. This is very efficient.
 
-https://github.com/CIS-1900-F23/Fall-2023/blob/0e20d56d7ba2ffd856709c29e3c9e0862ba5c3fb/13/struct_of_arrays.cpp#L7-L22
+https://github.com/CIS-1900-F23/Fall-2023/blob/0508ae515f3b4a7dd37b2247ad87e8044baa1047/13/struct_of_arrays.cpp#L7-L23
 
 If we know in advance that our access patterns will look like this and instead designed this application such that all students are one struct that consists of separate arrays for each property, looping over students to access their grades can easily be done by looping over the grades array and now everything is contiguous in memory. Another advantage of this design is that now we can use SIMD operations, which we will mention in a second to improve the performance.
 
-https://github.com/CIS-1900-F23/Fall-2023/blob/0e20d56d7ba2ffd856709c29e3c9e0862ba5c3fb/13/struct_of_arrays.cpp#L24-L39
+https://github.com/CIS-1900-F23/Fall-2023/blob/0508ae515f3b4a7dd37b2247ad87e8044baa1047/13/struct_of_arrays.cpp#L25-L41
 
 <pre>
 
 -----------------------------------------------------
 Benchmark           Time             CPU   Iterations
 -----------------------------------------------------
-BM_F1            3384 ns         3384 ns       207000
-BM_F2            2194 ns         2194 ns       319715
+BM_F1            3505 ns         3505 ns       200338
+BM_F2             365 ns          365 ns      1650113
 </pre>
 This is the result of my benchmark of the two approaches.
 

@@ -10,9 +10,10 @@ struct Student
     unsigned grade;
     std::string name;
     std::string pennkey;
+    int arr[1000] = {0}; // padding to ensure different cache lines
 };
 
-void f1 (std::vector<Student> students)
+void f1 (const std::vector<Student>& students)
 {
     int sum = 0;
     for (const auto& student : students)
@@ -27,9 +28,10 @@ struct Students
     std::vector<unsigned> grades;
     std::vector<std::string> names;
     std::vector<std::string> pennkeys;
+    std::vector<int [1000]> arrs;
 };
 
-void f2 (Students students)
+void f2 (const Students& students)
 {
     int sum = 0;
     for (const auto& grade : students.grades)
@@ -39,10 +41,11 @@ void f2 (Students students)
 }
 
 static void BM_F1(benchmark::State& state) {
-  auto s2 = Students{ std::vector<unsigned>(100),
-                        std::vector<unsigned>(100),
-                        std::vector<std::string>(100),
-                        std::vector<std::string>(100) };
+  auto s2 = Students{ std::vector<unsigned>(1000),
+                        std::vector<unsigned>(1000),
+                        std::vector<std::string>(1000),
+                        std::vector<std::string>(1000),
+                        std::vector<int[1000]> (1000) };
   for (auto _ : state)
   {
     f2(s2);
